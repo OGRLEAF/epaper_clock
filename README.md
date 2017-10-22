@@ -39,7 +39,7 @@ sudo apt-get install php curl -y
 ```
 4.尝试获取统计数据
 ```bash
-php /tongjiapi/demo.php
+php ./tongjiapi/demo.php
 ```
 如果输出类似下面的结果，说明获取成功：
 ```json
