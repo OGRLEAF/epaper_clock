@@ -59,7 +59,7 @@ sudo ./home_air_sensor.py
 
 CREATE BY [橙叶博客](https://www.orgleaf.com)
 
-#以下是原作者的教程
+# 以下是原作者的教程
 ### 所用的硬件
 * 树莓派3
 * 微雪4.3寸串口电子墨水屏
