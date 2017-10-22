@@ -4,17 +4,17 @@
  * set your information in Config.inc. php such as USERNAME, PASSWORD ... before use
  * especially, you can modify this Demo on your need!
  */
+$cur_dir = dirname(__FILE__); 
+chdir($cur_dir);
 require_once('Config.inc.php');
 require_once('LoginService.inc.php');
 require_once('ReportService.inc.php');
 error_reporting(E_ALL || ~E_NOTICE);
 $loginService = new LoginService(LOGIN_URL, UUID);
-
 // preLogin
 if (!$loginService->preLogin(USERNAME, TOKEN)) {
     exit();
 }
-
 // doLogin
 $ret = $loginService->doLogin(USERNAME, PASSWORD, TOKEN);
 if ($ret) {
@@ -24,17 +24,13 @@ if ($ret) {
 else {
     exit();
 }
-
 //get current_date
 $currentDate = date("Ymd",strtotime("-1 day"));
 $yesterdayDate = date("Ymd");
-
 $reportService = new ReportService(API_URL, USERNAME, TOKEN, $ucid, $st);
-
 // get site list
 $ret = $reportService->getSiteList();
 //echo $ret['raw'] . PHP_EOL;
-
 $siteList = $ret['body']['data'][0]['list'];
 if (count($siteList) > 0) {
     $siteId = $siteList[0]['site_id'];
@@ -48,8 +44,8 @@ if (count($siteList) > 0) {
         'max_results' => 0,                     //返回所有条数
         'gran' => 'day',                        //按天粒度
     ));
-    echo $ret['raw'] . PHP_EOL;
+//  echo $ret['raw'] . PHP_EOL;
+    file_put_contents('statistics.json', $ret['raw']);
 }
-
 // doLogout
 $loginService->doLogout(USERNAME, TOKEN, $ucid, $st);
