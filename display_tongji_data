@@ -27,7 +27,7 @@ def tongji_fail(msg):
 
 tongji_data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'statistics.json',)
 #tongji_data_file = codecs.open(statistics.json, encoding='utf-8')
-tdata_uv = {}
+tdata = {}
 try:
     with open(tongji_data_file, 'r') as in_file:
         tdata = json.load(in_file)
