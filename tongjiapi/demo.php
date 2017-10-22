@@ -4,11 +4,14 @@
  * set your information in Config.inc. php such as USERNAME, PASSWORD ... before use
  * especially, you can modify this Demo on your need!
  */
+
+//获取绝对路径
 $cur_dir = dirname(__FILE__); 
 chdir($cur_dir);
 require_once('Config.inc.php');
 require_once('LoginService.inc.php');
 require_once('ReportService.inc.php');
+
 error_reporting(E_ALL || ~E_NOTICE);
 $loginService = new LoginService(LOGIN_URL, UUID);
 // preLogin
@@ -45,6 +48,7 @@ if (count($siteList) > 0) {
         'gran' => 'day',                        //按天粒度
     ));
 //  echo $ret['raw'] . PHP_EOL;
+    //输出JSON文件
     file_put_contents('statistics.json', $ret['raw']);
 }
 // doLogout
